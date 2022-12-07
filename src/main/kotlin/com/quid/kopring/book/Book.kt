@@ -5,7 +5,8 @@ import javax.persistence.Id
 
 @Entity
 class Book(
-    @Id val id: Long? = null,
+    @Id
+    val id: Long? = null,
     val name: String,
 ) {
     init {
