@@ -1,5 +1,7 @@
 package com.quid.kopring.dto.user.request;
 
+import lombok.Builder;
+
 public class UserCreateRequest {
 
   private String name;
@@ -13,4 +15,9 @@ public class UserCreateRequest {
     return age;
   }
 
+  @Builder
+  public UserCreateRequest(String name, Integer age) {
+    this.name = name;
+    this.age = age;
+  }
 }
