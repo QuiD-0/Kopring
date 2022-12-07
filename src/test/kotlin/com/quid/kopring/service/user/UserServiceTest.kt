@@ -4,6 +4,7 @@ import com.quid.kopring.domain.user.UserRepository
 import com.quid.kopring.dto.user.request.UserCreateRequest
 import com.quid.kopring.dto.user.request.UserUpdateRequest
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -22,6 +23,7 @@ class UserServiceTest @Autowired constructor(
     }
 
     @Test
+    @DisplayName("유저 생성")
     fun saveUser() {
         val request = UserCreateRequest(NAME, 10)
 
@@ -32,6 +34,7 @@ class UserServiceTest @Autowired constructor(
     }
 
     @Test
+    @DisplayName("유저 이름 수정")
     fun updateUser() {
         val request = UserCreateRequest(NAME, 10)
         userService.saveUser(request)
@@ -46,6 +49,7 @@ class UserServiceTest @Autowired constructor(
     }
 
     @Test
+    @DisplayName("유저 삭제")
     fun deleteUser() {
         val request = UserCreateRequest(NAME, 10)
         userService.saveUser(request)
