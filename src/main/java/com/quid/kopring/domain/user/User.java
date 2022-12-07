@@ -1,6 +1,7 @@
 package com.quid.kopring.domain.user;
 
-import com.quid.kopring.domain.book.Book;
+import com.quid.kopring.book.Book;
+import com.quid.kopring.domain.book.JavaBook;
 import com.quid.kopring.domain.user.loanhistory.UserLoanHistory;
 
 import javax.persistence.*;

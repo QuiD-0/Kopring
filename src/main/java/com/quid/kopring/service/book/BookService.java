@@ -1,6 +1,7 @@
 package com.quid.kopring.service.book;
 
-import com.quid.kopring.domain.book.Book;
+import com.quid.kopring.book.Book;
+import com.quid.kopring.domain.book.JavaBook;
 import com.quid.kopring.domain.book.BookRepository;
 import com.quid.kopring.domain.user.User;
 import com.quid.kopring.domain.user.UserRepository;
@@ -30,7 +31,7 @@ public class BookService {
 
   @Transactional
   public void saveBook(BookRequest request) {
-    Book newBook = new Book(request.getName());
+    Book newBook = new Book(null, request.getName());
     bookRepository.save(newBook);
   }
 
