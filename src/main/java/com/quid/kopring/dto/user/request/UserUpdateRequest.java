@@ -1,8 +1,7 @@
 package com.quid.kopring.dto.user.request;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 
-@AllArgsConstructor
 public class UserUpdateRequest {
 
   private long id;
@@ -16,4 +15,9 @@ public class UserUpdateRequest {
     return name;
   }
 
+  @Builder
+  public UserUpdateRequest(long id, String name) {
+    this.id = id;
+    this.name = name;
+  }
 }
