@@ -1,9 +1,8 @@
 package com.quid.kopring.domain.user;
 
 import com.quid.kopring.book.Book;
-import com.quid.kopring.domain.book.JavaBook;
-import com.quid.kopring.domain.user.loanhistory.UserLoanHistory;
 
+import com.quid.kopring.userLoanHistory.UserLoanHistory;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +41,7 @@ public class User {
   }
 
   public void loanBook(Book book) {
-    this.userLoanHistories.add(new UserLoanHistory(this, book.getName(), false));
+    this.userLoanHistories.add(new UserLoanHistory(null, this, book.getName(), false));
   }
 
   public void returnBook(String bookName) {

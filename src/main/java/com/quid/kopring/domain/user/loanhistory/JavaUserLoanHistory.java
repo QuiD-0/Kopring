@@ -10,25 +10,22 @@ import javax.persistence.ManyToOne;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-public class UserLoanHistory {
+public class JavaUserLoanHistory {
 
   @Id
   @GeneratedValue(strategy = IDENTITY)
   private Long id;
 
-  @ManyToOne
-  private User user;
 
   private String bookName;
 
   private boolean isReturn;
 
-  public UserLoanHistory() {
+  public JavaUserLoanHistory() {
 
   }
 
-  public UserLoanHistory(User user, String bookName, boolean isReturn) {
-    this.user = user;
+  public JavaUserLoanHistory(User user, String bookName, boolean isReturn) {
     this.bookName = bookName;
     this.isReturn = isReturn;
   }
