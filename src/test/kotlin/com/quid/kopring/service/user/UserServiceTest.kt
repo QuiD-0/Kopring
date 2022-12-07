@@ -45,4 +45,17 @@ class UserServiceTest @Autowired constructor(
         assertThat(updatedUser.name).isEqualTo(UPDATEDNAME)
     }
 
+    @Test
+    fun deleteUser() {
+        val request = UserCreateRequest(NAME, 10)
+        userService.saveUser(request)
+
+        val user = userRepository.findByName(NAME).get()
+
+        userService.deleteUser(user.name)
+
+        val deletedUser = userRepository.findByName(NAME)
+        assertThat(deletedUser).isEmpty
+    }
+
 }
