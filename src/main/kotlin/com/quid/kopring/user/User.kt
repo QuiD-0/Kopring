@@ -28,10 +28,8 @@ class User(
     fun loanBook(book: Book) {
         UserLoanHistory(
             user = this,
-            bookName = book.name,
-            isReturn = false
-        )
-            .also { userLoanHistories.add(it) }
+            bookName = book.name
+        ).also { userLoanHistories.add(it) }
     }
 
     fun returnBook(bookName: String) {

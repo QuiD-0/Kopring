@@ -11,7 +11,7 @@ class UserLoanHistory(
     @ManyToOne
     val user: User,
     val bookName: String,
-    var isReturn: Boolean,
+    var isReturn: Boolean = false,
 ) {
     fun doReturn() {
         this.isReturn = true
