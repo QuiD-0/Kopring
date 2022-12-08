@@ -1,6 +1,6 @@
 package com.quid.kopring.dto.user.response;
 
-import com.quid.kopring.domain.user.User;
+import com.quid.kopring.user.User;
 
 public class UserResponse {
 

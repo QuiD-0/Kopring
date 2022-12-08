@@ -1,5 +1,6 @@
 package com.quid.kopring.domain.user;
 
+import com.quid.kopring.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

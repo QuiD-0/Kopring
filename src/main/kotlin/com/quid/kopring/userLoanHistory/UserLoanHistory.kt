@@ -1,6 +1,6 @@
 package com.quid.kopring.userLoanHistory
 
-import com.quid.kopring.domain.user.User
+import com.quid.kopring.user.User
 import javax.persistence.*
 
 @Entity
