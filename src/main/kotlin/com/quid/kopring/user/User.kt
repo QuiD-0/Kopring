@@ -33,6 +33,7 @@ class User(
     }
 
     fun returnBook(bookName: String) {
-        userLoanHistories.find { it.bookName == bookName && !it.isReturn }?.doReturn() ?: throw IllegalArgumentException("존재하지 않는 책입니다.")
+        userLoanHistories.find { it.bookName == bookName && !it.isReturn }?.doReturn()
+            ?: throw IllegalArgumentException("존재하지 않는 책입니다.")
     }
 }
