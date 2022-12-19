@@ -4,6 +4,7 @@ import com.quid.kopring.user.model.request.UserCreateRequest
 import com.quid.kopring.user.model.request.UserUpdateRequest
 import com.quid.kopring.user.repository.UserJpaRepository
 import com.quid.kopring.user.service.UserService
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
