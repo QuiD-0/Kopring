@@ -7,6 +7,7 @@ import com.quid.kopring.dto.book.request.BookRequest
 import com.quid.kopring.dto.book.request.BookReturnRequest
 import com.quid.kopring.user.repository.UserJpaRepository
 import com.quid.kopring.userLoanHistory.repository.UserLoanHistoryJpaRepository
+import com.quid.kopring.util.fail
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional
 class BookService(
     private val bookJpaRepository: BookJpaRepository,
     private val userJpaRepository: UserJpaRepository,
-    private val userLoanHistoryJpaRepository: UserLoanHistoryJpaRepository
+    private val userLoanHistoryRepository: UserLoanHistoryJpaRepository
 ) {
     @Transactional
     fun saveBook(request: BookRequest) {
@@ -23,22 +24,20 @@ class BookService(
 
     @Transactional
     fun loanBook(request: BookLoanRequest) {
-        val book = bookJpaRepository.findByName(request.bookName)
-            .orElseThrow { IllegalArgumentException("Book not found") }
+        val book = bookJpaRepository.findByName(request.bookName) ?: fail("Book not found")
 
-        if (userLoanHistoryJpaRepository.findByBookNameAndIsReturn
-                (request.bookName, false) != null
-        ) throw IllegalArgumentException("Book is already loaned")
+        if (userLoanHistoryRepository.findByBookNameAndIsReturn(
+                request.bookName, false
+            ) != null
+        ) fail("Book is already loaned")
 
-        userJpaRepository.findByName(request.userName)
-            .orElseThrow { IllegalArgumentException("User not found") }
-            .also { it.loanBook(book) }
+        val user = userJpaRepository.findByName(request.userName) ?: fail("User not found")
+        user.loanBook(book)
     }
 
     @Transactional
-    fun returnBook(request: BookReturnRequest){
-        userJpaRepository.findByName(request.userName)
-            .orElseThrow { IllegalArgumentException("User not found") }
-            .also { it.returnBook(request.bookName) }
+    fun returnBook(request: BookReturnRequest) {
+        userJpaRepository.findByName(request.userName)?.returnBook(request.bookName)
+            ?: fail("User not found")
     }
 }
