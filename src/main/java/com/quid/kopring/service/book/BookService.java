@@ -1,32 +1,24 @@
 package com.quid.kopring.service.book;
 
 import com.quid.kopring.book.Book;
-import com.quid.kopring.domain.book.BookRepository;
-import com.quid.kopring.domain.user.UserRepository;
-import com.quid.kopring.domain.user.loanhistory.UserLoanHistoryRepository;
+import com.quid.kopring.book.repository.BookJpaRepository;
 import com.quid.kopring.dto.book.request.BookLoanRequest;
 import com.quid.kopring.dto.book.request.BookRequest;
 import com.quid.kopring.dto.book.request.BookReturnRequest;
 import com.quid.kopring.user.User;
+import com.quid.kopring.user.repository.UserJpaRepository;
+import com.quid.kopring.userLoanHistory.repository.UserLoanHistoryJpaRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
 
-    private final BookRepository bookRepository;
-    private final UserRepository userRepository;
-    private final UserLoanHistoryRepository userLoanHistoryRepository;
-
-    public BookService(
-        BookRepository bookRepository,
-        UserRepository userRepository,
-        UserLoanHistoryRepository userLoanHistoryRepository
-    ) {
-        this.bookRepository = bookRepository;
-        this.userRepository = userRepository;
-        this.userLoanHistoryRepository = userLoanHistoryRepository;
-    }
+    private final BookJpaRepository bookRepository;
+    private final UserJpaRepository userRepository;
+    private final UserLoanHistoryJpaRepository userLoanHistoryRepository;
 
     @Transactional
     public void saveBook(BookRequest request) {

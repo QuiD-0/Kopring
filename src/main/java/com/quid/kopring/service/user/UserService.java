@@ -1,24 +1,22 @@
 package com.quid.kopring.service.user;
 
-import com.quid.kopring.domain.user.UserRepository;
 import com.quid.kopring.dto.user.request.UserCreateRequest;
 import com.quid.kopring.dto.user.request.UserUpdateRequest;
 import com.quid.kopring.dto.user.response.UserResponse;
 import com.quid.kopring.user.User;
+import com.quid.kopring.user.repository.UserJpaRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private final UserJpaRepository userRepository;
 
     @Transactional
     public void saveUser(UserCreateRequest request) {
