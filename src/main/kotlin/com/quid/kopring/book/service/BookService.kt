@@ -2,9 +2,9 @@ package com.quid.kopring.book.service
 
 import com.quid.kopring.book.Book
 import com.quid.kopring.book.repository.BookJpaRepository
-import com.quid.kopring.dto.book.request.BookLoanRequest
-import com.quid.kopring.dto.book.request.BookRequest
-import com.quid.kopring.dto.book.request.BookReturnRequest
+import com.quid.kopring.book.model.request.BookLoanRequest
+import com.quid.kopring.book.model.request.BookRequest
+import com.quid.kopring.book.model.request.BookReturnRequest
 import com.quid.kopring.user.repository.UserJpaRepository
 import com.quid.kopring.userLoanHistory.repository.UserLoanHistoryJpaRepository
 import com.quid.kopring.util.fail

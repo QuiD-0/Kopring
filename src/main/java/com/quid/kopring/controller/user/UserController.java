@@ -1,8 +1,8 @@
 package com.quid.kopring.controller.user;
 
-import com.quid.kopring.dto.user.request.UserCreateRequest;
-import com.quid.kopring.dto.user.request.UserUpdateRequest;
-import com.quid.kopring.dto.user.response.UserResponse;
+import com.quid.kopring.user.model.request.UserCreateRequest;
+import com.quid.kopring.user.model.request.UserUpdateRequest;
+import com.quid.kopring.user.model.response.UserResponse;
 import com.quid.kopring.user.service.UserService;
 import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;

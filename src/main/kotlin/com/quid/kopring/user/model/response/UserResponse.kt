@@ -1,29 +1,15 @@
-package com.quid.kopring.dto.user.response;
+package com.quid.kopring.user.model.response
 
-import com.quid.kopring.user.User;
+import com.quid.kopring.user.User
 
-public class UserResponse {
-
-  private final long id;
-  private final String name;
-  private final Integer age;
-
-  public UserResponse(User user) {
-    this.id = user.getId();
-    this.name = user.getName();
-    this.age = user.getAge();
-  }
-
-  public long getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public Integer getAge() {
-    return age;
-  }
-
+class UserResponse(
+    val id: Long,
+    val name: String,
+    val age: Int?
+) {
+    constructor(user: User) : this(
+        id = user.id!!,
+        name = user.name,
+        age = user.age
+    )
 }

@@ -1,16 +1,6 @@
-package com.quid.kopring.dto.book.request;
+package com.quid.kopring.book.model.request
 
-public class BookReturnRequest {
-
-  private String userName;
-  private String bookName;
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public String getBookName() {
-    return bookName;
-  }
-
-}
+class BookReturnRequest (
+    val userName: String,
+    val bookName: String
+)

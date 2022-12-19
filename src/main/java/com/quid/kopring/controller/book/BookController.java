@@ -1,9 +1,9 @@
 package com.quid.kopring.controller.book;
 
 import com.quid.kopring.book.service.BookService;
-import com.quid.kopring.dto.book.request.BookLoanRequest;
-import com.quid.kopring.dto.book.request.BookRequest;
-import com.quid.kopring.dto.book.request.BookReturnRequest;
+import com.quid.kopring.book.model.request.BookLoanRequest;
+import com.quid.kopring.book.model.request.BookRequest;
+import com.quid.kopring.book.model.request.BookReturnRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,6 +1,6 @@
 package com.quid.kopring.book
 
-import com.quid.kopring.dto.book.request.BookRequest
+import com.quid.kopring.book.model.request.BookRequest
 import javax.persistence.Entity
 import javax.persistence.Id
 
