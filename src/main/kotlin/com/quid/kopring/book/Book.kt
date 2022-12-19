@@ -1,5 +1,6 @@
 package com.quid.kopring.book
 
+import com.quid.kopring.dto.book.request.BookRequest
 import javax.persistence.Entity
 import javax.persistence.Id
 
@@ -13,7 +14,6 @@ class Book(
         if (name.isBlank()) {
             throw IllegalArgumentException("name must not be blank")
         }
-
     }
 
 }
