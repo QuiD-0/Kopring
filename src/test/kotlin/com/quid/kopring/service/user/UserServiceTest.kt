@@ -1,8 +1,9 @@
 package com.quid.kopring.service.user
 
-import com.quid.kopring.domain.user.UserRepository
 import com.quid.kopring.dto.user.request.UserCreateRequest
 import com.quid.kopring.dto.user.request.UserUpdateRequest
+import com.quid.kopring.user.repository.UserJpaRepository
+import com.quid.kopring.user.service.UserService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -13,13 +14,13 @@ import javax.transaction.Transactional
 @SpringBootTest
 @Transactional
 class UserServiceTest @Autowired constructor(
-    private val userRepository: UserRepository,
+    private val userRepository: UserJpaRepository,
     private val userService: UserService
 ) {
 
     companion object {
         const val NAME: String = "test"
-        const val UPDATED_NAME : String = "updated"
+        const val UPDATED_NAME: String = "updated"
     }
 
     @Test
