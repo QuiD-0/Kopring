@@ -1,9 +1,7 @@
 package com.quid.kopring.book
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import com.quid.kopring.book.model.type.BookType
+import javax.persistence.*
 
 @Entity
 class Book(
@@ -11,7 +9,8 @@ class Book(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val name: String,
-    val type: String,
+    @Enumerated(EnumType.STRING)
+    val type: BookType,
 ) {
     init {
         if (name.isBlank()) {
