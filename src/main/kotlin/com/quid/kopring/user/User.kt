@@ -2,6 +2,7 @@ package com.quid.kopring.user
 
 import com.quid.kopring.book.Book
 import com.quid.kopring.userLoanHistory.UserLoanHistory
+import com.quid.kopring.userLoanHistory.type.UserLoanStatus.LOANED
 import javax.persistence.*
 import javax.persistence.GenerationType.IDENTITY
 
@@ -33,7 +34,7 @@ class User(
     }
 
     fun returnBook(bookName: String) {
-        userLoanHistories.find { it.bookName == bookName && !it.isReturn }?.doReturn()
+        userLoanHistories.find { it.bookName == bookName && it.status == LOANED }?.doReturn()
             ?: throw IllegalArgumentException("존재하지 않는 책입니다.")
     }
 }

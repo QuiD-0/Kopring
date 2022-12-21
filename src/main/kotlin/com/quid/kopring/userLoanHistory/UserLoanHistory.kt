@@ -1,6 +1,8 @@
 package com.quid.kopring.userLoanHistory
 
 import com.quid.kopring.user.User
+import com.quid.kopring.userLoanHistory.type.UserLoanStatus
+import com.quid.kopring.userLoanHistory.type.UserLoanStatus.*
 import javax.persistence.*
 
 @Entity
@@ -11,9 +13,9 @@ class UserLoanHistory(
     @ManyToOne
     val user: User,
     val bookName: String,
-    var isReturn: Boolean = false,
+    var status: UserLoanStatus = LOANED,
 ) {
     fun doReturn() {
-        this.isReturn = true
+        this.status = RETURNED
     }
 }
