@@ -2,7 +2,7 @@ package com.quid.kopring.book.controller
 
 import com.quid.kopring.book.Book
 import com.quid.kopring.book.model.request.BookLoanRequest
-import com.quid.kopring.book.model.request.BookRequest
+import com.quid.kopring.book.model.request.BookCreateRequest
 import com.quid.kopring.book.model.request.BookReturnRequest
 import com.quid.kopring.book.service.BookService
 import org.springframework.web.bind.annotation.GetMapping
@@ -23,7 +23,7 @@ class BookController(
     }
 
     @PostMapping
-    fun saveBook(@RequestBody request: BookRequest) {
+    fun saveBook(@RequestBody request: BookCreateRequest) {
         bookService.saveBook(request)
     }
 

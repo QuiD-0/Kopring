@@ -3,7 +3,7 @@ package com.quid.kopring.book.service
 import com.quid.kopring.book.Book
 import com.quid.kopring.book.repository.BookJpaRepository
 import com.quid.kopring.book.model.request.BookLoanRequest
-import com.quid.kopring.book.model.request.BookRequest
+import com.quid.kopring.book.model.request.BookCreateRequest
 import com.quid.kopring.book.model.request.BookReturnRequest
 import com.quid.kopring.user.repository.UserJpaRepository
 import com.quid.kopring.userLoanHistory.repository.UserLoanHistoryJpaRepository
@@ -18,7 +18,7 @@ class BookService(
     private val userLoanHistoryRepository: UserLoanHistoryJpaRepository
 ) {
     @Transactional
-    fun saveBook(request: BookRequest) {
+    fun saveBook(request: BookCreateRequest) {
         Book(name = request.name, type = request.type).also { bookJpaRepository.save(it) }
     }
 
