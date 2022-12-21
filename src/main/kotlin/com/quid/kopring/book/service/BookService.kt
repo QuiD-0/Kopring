@@ -19,7 +19,7 @@ class BookService(
 ) {
     @Transactional
     fun saveBook(request: BookRequest) {
-        Book(name = request.name).also { bookJpaRepository.save(it) }
+        Book(name = request.name, type = request.type).also { bookJpaRepository.save(it) }
     }
 
     @Transactional
@@ -39,5 +39,9 @@ class BookService(
     fun returnBook(request: BookReturnRequest) {
         userJpaRepository.findByName(request.userName)?.returnBook(request.bookName)
             ?: fail("User not found")
+    }
+
+    fun getBooks(): List<Book> {
+        return bookJpaRepository.findAll();
     }
 }
