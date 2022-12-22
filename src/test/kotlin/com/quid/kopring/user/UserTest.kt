@@ -1,7 +1,6 @@
 package com.quid.kopring.user
 
 import com.quid.kopring.book.Book
-import com.quid.kopring.book.model.type.BookType
 import com.quid.kopring.book.model.type.BookType.COMPUTER
 import com.quid.kopring.service.user.UserServiceTest
 import org.assertj.core.api.Assertions
