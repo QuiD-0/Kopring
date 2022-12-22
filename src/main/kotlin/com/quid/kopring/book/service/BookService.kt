@@ -7,6 +7,7 @@ import com.quid.kopring.book.model.request.BookCreateRequest
 import com.quid.kopring.book.model.request.BookReturnRequest
 import com.quid.kopring.user.repository.UserJpaRepository
 import com.quid.kopring.userLoanHistory.repository.UserLoanHistoryJpaRepository
+import com.quid.kopring.userLoanHistory.type.UserLoanStatus
 import com.quid.kopring.util.fail
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -26,8 +27,8 @@ class BookService(
     fun loanBook(request: BookLoanRequest) {
         val book = bookJpaRepository.findByName(request.bookName) ?: fail("Book not found")
 
-        if (userLoanHistoryRepository.findByBookNameAndIsReturn(
-                request.bookName, false
+        if (userLoanHistoryRepository.findByBookNameAndStatus(
+                request.bookName, UserLoanStatus.LOANED
             ) != null
         ) fail("Book is already loaned")
 
