@@ -4,6 +4,7 @@ import com.quid.kopring.user.model.request.UserCreateRequest
 import com.quid.kopring.user.model.request.UserUpdateRequest
 import com.quid.kopring.user.model.response.UserResponse
 import com.quid.kopring.user.User
+import com.quid.kopring.user.model.response.UserLoanListResponse
 import com.quid.kopring.user.repository.UserJpaRepository
 import com.quid.kopring.util.fail
 import org.springframework.data.repository.findByIdOrNull
@@ -38,5 +39,11 @@ class UserService(private val userRepository: UserJpaRepository) {
         val user =
             userRepository.findByName(name) ?: fail("User not found")
         userRepository.delete(user)
+    }
+
+    @Transactional(readOnly = true)
+    fun getUserLoanList(name: String): UserLoanListResponse {
+        val userLoanHistories = userRepository.findByName(name)?.userLoanHistories?: listOf()
+        return UserLoanListResponse(name, userLoanHistories.toList())
     }
 }
