@@ -16,10 +16,7 @@ class UserService(private val userRepository: UserJpaRepository) {
 
     @Transactional
     fun saveUser(request: UserCreateRequest) {
-        User(
-            name = request.name,
-            age = request.age
-        ).also { userRepository.save(it) }
+        User.of(request).also { userRepository.save(it) }
     }
 
     @Transactional(readOnly = true)
@@ -43,7 +40,7 @@ class UserService(private val userRepository: UserJpaRepository) {
 
     @Transactional(readOnly = true)
     fun getUserLoanList(name: String): UserLoanListResponse {
-        val userLoanHistories = userRepository.findByName(name)?.userLoanHistories?: listOf()
+        val userLoanHistories = userRepository.findByName(name) ?.userLoanHistories ?: listOf()
         return UserLoanListResponse(name, userLoanHistories.toList())
     }
 }

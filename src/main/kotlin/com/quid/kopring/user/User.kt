@@ -1,6 +1,7 @@
 package com.quid.kopring.user
 
 import com.quid.kopring.book.Book
+import com.quid.kopring.user.model.request.UserCreateRequest
 import com.quid.kopring.userLoanHistory.UserLoanHistory
 import com.quid.kopring.userLoanHistory.type.UserLoanStatus.LOANED
 import javax.persistence.*
@@ -19,6 +20,15 @@ class User(
     init {
         if (name.isBlank()) {
             throw IllegalArgumentException("Name cannot be blank")
+        }
+    }
+
+    companion object {
+        fun of(request: UserCreateRequest): User {
+            return User(
+                name = request.name,
+                age = request.age
+            )
         }
     }
 
