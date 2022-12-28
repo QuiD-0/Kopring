@@ -1,0 +1,1 @@
+--Xms:1g --XX:+useG1GC
