@@ -46,7 +46,7 @@ class BookService(
 
     @Transactional(readOnly = true)
     fun getBooks(): List<Book> {
-        return bookJpaRepository.findAll();
+        return bookJpaRepository.findAll()
     }
 
     @Transactional(readOnly = true)
@@ -60,6 +60,6 @@ class BookService(
         bookJpaRepository.findAll().forEach { book ->
             result[book.type] = result.getOrDefault(book.type, 0) + 1
         }
-        return result.map { BookStat(it.key, it.value) }
+        return result.map(::BookStat)
     }
 }
