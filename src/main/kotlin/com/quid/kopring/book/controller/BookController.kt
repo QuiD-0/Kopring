@@ -4,6 +4,7 @@ import com.quid.kopring.book.Book
 import com.quid.kopring.book.model.request.BookLoanRequest
 import com.quid.kopring.book.model.request.BookCreateRequest
 import com.quid.kopring.book.model.request.BookReturnRequest
+import com.quid.kopring.book.model.response.BookStat
 import com.quid.kopring.book.service.BookService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -27,6 +28,11 @@ class BookController(
         bookService.saveBook(request)
     }
 
+    @GetMapping("/loan")
+    fun getCountLoanBook(): Int {
+        return bookService.getCountLoanBook()
+    }
+
     @PostMapping("/loan")
     fun loanBook(@RequestBody request: BookLoanRequest) {
         bookService.loanBook(request)
@@ -35,5 +41,10 @@ class BookController(
     @PutMapping("/return")
     fun returnBook(@RequestBody request: BookReturnRequest) {
         bookService.returnBook(request)
+    }
+
+    @GetMapping("/stat")
+    fun getStat(): List<BookStat> {
+        return bookService.getStat()
     }
 }
