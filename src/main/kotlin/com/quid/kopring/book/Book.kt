@@ -1,5 +1,6 @@
 package com.quid.kopring.book
 
+import com.quid.kopring.book.model.request.BookUpdateRequest
 import com.quid.kopring.book.model.type.BookType
 import javax.persistence.*
 
@@ -8,14 +9,19 @@ class Book(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    val name: String,
+    var name: String,
     @Enumerated(EnumType.STRING)
-    val type: BookType,
+    var type: BookType,
 ) {
     init {
         if (name.isBlank()) {
             throw IllegalArgumentException("name must not be blank")
         }
+    }
+
+    fun update(request: BookUpdateRequest) {
+        name = request.name
+        type = request.type
     }
 
 }

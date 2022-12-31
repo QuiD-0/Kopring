@@ -1,10 +1,13 @@
 package com.quid.kopring.book.service
 
+import com.quid.kopring.book.Book
 import com.quid.kopring.book.model.request.BookCreateRequest
 import com.quid.kopring.book.model.request.BookLoanRequest
+import com.quid.kopring.book.model.request.BookUpdateRequest
 import com.quid.kopring.book.model.type.BookType.SCIENCE
 import com.quid.kopring.user.model.request.UserCreateRequest
 import com.quid.kopring.user.service.UserService
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -39,4 +42,17 @@ class BookServiceTest @Autowired constructor(
 
         assert(userService.getUserLoanList("user1").loanList.size == 1)
     }
+
+    @Test
+    @DisplayName("책 업데이트")
+    fun updateTest() {
+        create.let(bookService::saveBook)
+
+        bookService.updateBook(1L, BookUpdateRequest("updated", SCIENCE))
+
+        val book = bookService.getBooks().first()
+
+        assert(book.name == "updated")
+    }
+
 }

@@ -4,6 +4,9 @@ import com.quid.kopring.user.model.request.UserCreateRequest
 import com.quid.kopring.user.model.request.UserUpdateRequest
 import com.quid.kopring.user.repository.UserJpaRepository
 import com.quid.kopring.user.service.UserService
+import com.quid.kopring.userLoanHistory.repository.UserLoanHistoryJpaRepository
+import com.quid.kopring.userLoanHistory.type.UserLoanStatus
+import com.quid.kopring.userLoanHistory.type.UserLoanStatus.LOANED
 import com.quid.kopring.util.fail
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
@@ -16,6 +19,7 @@ import javax.transaction.Transactional
 @Transactional
 class UserServiceTest @Autowired constructor(
     private val userRepository: UserJpaRepository,
+    private val userLoanHistoryJpaRepository: UserLoanHistoryJpaRepository,
     private val userService: UserService
 ) {
 

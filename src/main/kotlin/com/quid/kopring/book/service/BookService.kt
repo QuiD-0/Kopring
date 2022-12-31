@@ -5,6 +5,7 @@ import com.quid.kopring.book.repository.BookJpaRepository
 import com.quid.kopring.book.model.request.BookLoanRequest
 import com.quid.kopring.book.model.request.BookCreateRequest
 import com.quid.kopring.book.model.request.BookReturnRequest
+import com.quid.kopring.book.model.request.BookUpdateRequest
 import com.quid.kopring.book.model.response.BookStat
 import com.quid.kopring.book.model.type.BookType
 import com.quid.kopring.user.repository.UserJpaRepository
@@ -57,9 +58,16 @@ class BookService(
     @Transactional(readOnly = true)
     fun getStat(): List<BookStat> {
         val result = mutableMapOf<BookType, Int>()
-        bookJpaRepository.findAll().forEach { book ->
-            result[book.type] = result.getOrDefault(book.type, 0) + 1
+        bookJpaRepository.findAll().forEach {
+            result[it.type] = result.getOrDefault(it.type, 0) + 1
         }
         return result.map(::BookStat)
+    }
+
+    @Transactional
+    fun updateBook(id: Long, request: BookUpdateRequest) {
+        bookJpaRepository.findById(id).orElseThrow { fail("Book not found") }.also {
+            it.update(request)
+        }
     }
 }

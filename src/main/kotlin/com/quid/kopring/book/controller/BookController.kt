@@ -4,14 +4,10 @@ import com.quid.kopring.book.Book
 import com.quid.kopring.book.model.request.BookLoanRequest
 import com.quid.kopring.book.model.request.BookCreateRequest
 import com.quid.kopring.book.model.request.BookReturnRequest
+import com.quid.kopring.book.model.request.BookUpdateRequest
 import com.quid.kopring.book.model.response.BookStat
 import com.quid.kopring.book.service.BookService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/book")
@@ -46,5 +42,10 @@ class BookController(
     @GetMapping("/stat")
     fun getStat(): List<BookStat> {
         return bookService.getStat()
+    }
+
+    @PutMapping("/{id}")
+    fun updateBook(@PathVariable id: Long, @RequestBody request: BookUpdateRequest) {
+        bookService.updateBook(id, request)
     }
 }
