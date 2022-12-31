@@ -58,7 +58,7 @@ class BookService(
     fun getStat(): List<BookStat> {
         return bookJpaRepository.findAll()
             .groupBy { it.type }
-            .map { (type, books) -> BookStat(type = type, count = books.size) }
+            .map { BookStat(type = it.key, count = it.value.size) }
     }
 
     @Transactional

@@ -1,13 +1,12 @@
 package com.quid.kopring.book.service
 
-import com.quid.kopring.book.Book
 import com.quid.kopring.book.model.request.BookCreateRequest
 import com.quid.kopring.book.model.request.BookLoanRequest
 import com.quid.kopring.book.model.request.BookUpdateRequest
+import com.quid.kopring.book.model.type.BookType.COMPUTER
 import com.quid.kopring.book.model.type.BookType.SCIENCE
 import com.quid.kopring.user.model.request.UserCreateRequest
 import com.quid.kopring.user.service.UserService
-import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -21,6 +20,8 @@ class BookServiceTest @Autowired constructor(
 
     companion object {
         val create = BookCreateRequest("test", SCIENCE)
+        val create2 = BookCreateRequest("test2", SCIENCE)
+        val create3 = BookCreateRequest("test3", COMPUTER)
         val loan = BookLoanRequest("user1", "test")
         val userCreate = UserCreateRequest("user1", 20)
     }
@@ -29,10 +30,12 @@ class BookServiceTest @Autowired constructor(
     @Transactional
     fun statTest() {
         create.let { bookService.saveBook(it) }
+        create2.let { bookService.saveBook(it) }
+        create3.let { bookService.saveBook(it) }
 
         val stat = bookService.getStat()
 
-        assert(stat.size == 1)
+        assert(stat.size == 2)
     }
 
     @Test
