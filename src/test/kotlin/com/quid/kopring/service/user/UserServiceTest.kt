@@ -19,7 +19,6 @@ import javax.transaction.Transactional
 @Transactional
 class UserServiceTest @Autowired constructor(
     private val userRepository: UserJpaRepository,
-    private val userLoanHistoryJpaRepository: UserLoanHistoryJpaRepository,
     private val userService: UserService
 ) {
 

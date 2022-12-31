@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.transaction.annotation.Transactional
 
 @SpringBootTest
 class BookServiceTest @Autowired constructor(
@@ -25,6 +26,7 @@ class BookServiceTest @Autowired constructor(
     }
 
     @Test
+    @Transactional
     fun statTest() {
         create.let { bookService.saveBook(it) }
 
@@ -34,17 +36,18 @@ class BookServiceTest @Autowired constructor(
     }
 
     @Test
+    @Transactional
     fun loanTest() {
         create.let { bookService.saveBook(it) }
         userCreate.let { userService.saveUser(it) }
 
         bookService.loanBook(loan)
 
-        assert(userService.getUserLoanList("user1").loanList.size == 1)
+        assert(userService.getUserLoanList("user1").loanList.isNotEmpty())
     }
 
     @Test
-    @DisplayName("책 업데이트")
+    @Transactional
     fun updateTest() {
         create.let(bookService::saveBook)
 
