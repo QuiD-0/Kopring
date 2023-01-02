@@ -2,7 +2,9 @@ package com.quid.kopring.book.repository
 
 import com.quid.kopring.book.Book
 import com.quid.kopring.book.model.response.BookStat
+import org.springframework.stereotype.Repository
 
+@Repository
 class BookRepositoryImpl(
     private val bookJpaRepository: BookJpaRepository,
     private val bookDslRepository: BookDslRepository

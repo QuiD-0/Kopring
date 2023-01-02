@@ -2,7 +2,9 @@ package com.quid.kopring.userLoanHistory.repository
 
 import com.quid.kopring.userLoanHistory.UserLoanHistory
 import com.quid.kopring.userLoanHistory.type.UserLoanStatus
+import org.springframework.stereotype.Repository
 
+@Repository
 class UserLoanHistoryRepositoryImpl(
     private val userLoanHistoryJpaRepository: UserLoanHistoryJpaRepository,
     private val userLoanHistoryDslRepository: UserLoanHistoryDslRepository

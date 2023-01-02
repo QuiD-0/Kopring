@@ -2,9 +2,7 @@ package com.quid.kopring.book.repository
 
 import com.quid.kopring.book.Book
 import com.quid.kopring.book.model.response.BookStat
-import org.springframework.stereotype.Repository
 
-@Repository
 interface BookRepository {
     fun findByName(name: String): Book?
     fun getBookStat(): List<BookStat>
