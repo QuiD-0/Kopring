@@ -17,16 +17,17 @@ repositories {
 }
 
 dependencies {
+    runtimeOnly 'com.h2database:h2'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation 'org.projectlombok:lombok:1.18.22'
     implementation 'org.springframework.boot:spring-boot-configuration-processor:3.0.1'
-    runtimeOnly 'com.h2database:h2'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.21'
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0'
     implementation 'com.querydsl:querydsl-jpa:5.0.0'
+    implementation 'io.github.microutils:kotlin-logging-jvm:3.0.4'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     kapt('com.querydsl:querydsl-apt:5.0.0:jpa')
     kapt('org.springframework.boot:spring-boot-configuration-processor')
 }
