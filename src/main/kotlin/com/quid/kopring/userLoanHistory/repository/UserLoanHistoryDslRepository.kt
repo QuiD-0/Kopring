@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository
 class UserLoanHistoryDslRepository(
     private val queryFactory: JPAQueryFactory
 ) {
-    fun findByBookNameAndStatus(bookName: String, status: UserLoanStatus) = queryFactory
+    fun find(bookName: String, status: UserLoanStatus? = null) = queryFactory
         .selectFrom(userLoanHistory)
-        .where(userLoanHistory.bookName.eq(bookName), userLoanHistory.status.eq(status))
+        .where(
+            userLoanHistory.bookName.eq(bookName),
+            status?.let { userLoanHistory.status.eq(status) })
         .fetchOne()
 
     fun findByStatus(status: UserLoanStatus) = queryFactory
