@@ -3,6 +3,7 @@ package com.quid.kopring.user
 import com.quid.kopring.book.Book
 import com.quid.kopring.book.model.type.BookType.COMPUTER
 import com.quid.kopring.service.user.UserServiceTest
+import com.quid.kopring.userLoanHistory.type.UserLoanStatus
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
@@ -31,7 +32,7 @@ class UserTest {
         user.returnBook(book.name)
 
         Assertions.assertThat(user.userLoanHistories.find { it.bookName == book.name }?.status)
-            .isEqualTo(true)
+            .isEqualTo(UserLoanStatus.RETURNED)
     }
 
 }
