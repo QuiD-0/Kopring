@@ -35,6 +35,7 @@ class BookServiceTest @Autowired constructor(
 
         val stat = bookService.getStat()
 
+
         assert(stat.size == 2)
     }
 

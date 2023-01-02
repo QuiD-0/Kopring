@@ -6,7 +6,7 @@ import com.quid.kopring.book.model.request.BookLoanRequest
 import com.quid.kopring.book.model.request.BookReturnRequest
 import com.quid.kopring.book.model.request.BookUpdateRequest
 import com.quid.kopring.book.model.response.BookStat
-import com.quid.kopring.book.repository.BookJpaRepository
+import com.quid.kopring.book.repository.BookRepository
 import com.quid.kopring.user.repository.UserJpaRepository
 import com.quid.kopring.userLoanHistory.repository.UserLoanHistoryJpaRepository
 import com.quid.kopring.userLoanHistory.type.UserLoanStatus
@@ -16,18 +16,18 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class BookService(
-    private val bookJpaRepository: BookJpaRepository,
+    private val bookRepository: BookRepository,
     private val userJpaRepository: UserJpaRepository,
     private val userLoanHistoryRepository: UserLoanHistoryJpaRepository
 ) {
     @Transactional
     fun saveBook(request: BookCreateRequest) {
-        Book(name = request.name, type = request.type).also { bookJpaRepository.save(it) }
+        Book(name = request.name, type = request.type).also { bookRepository.save(it) }
     }
 
     @Transactional
     fun loanBook(request: BookLoanRequest) {
-        val book = bookJpaRepository.findByName(request.bookName) ?: fail("Book not found")
+        val book = bookRepository.findByName(request.bookName) ?: fail("Book not found")
 
         if (userLoanHistoryRepository.findByBookNameAndStatus(
                 request.bookName, UserLoanStatus.LOANED
@@ -46,7 +46,7 @@ class BookService(
 
     @Transactional(readOnly = true)
     fun getBooks(): List<Book> {
-        return bookJpaRepository.findAll()
+        return bookRepository.findAll()
     }
 
     @Transactional(readOnly = true)
@@ -56,15 +56,11 @@ class BookService(
 
     @Transactional(readOnly = true)
     fun getStat(): List<BookStat> {
-        return bookJpaRepository.findAll()
-            .groupBy { it.type }
-            .map { BookStat(type = it.key, count = it.value.size) }
+        return bookRepository.getBookStat()
     }
 
     @Transactional
     fun updateBook(id: Long, request: BookUpdateRequest) {
-        bookJpaRepository.findById(id).orElseThrow { fail("Book not found") }.also {
-            it.update(request)
-        }
+        bookRepository.findById(id)?.update(request) ?: fail("Book not found")
     }
 }
